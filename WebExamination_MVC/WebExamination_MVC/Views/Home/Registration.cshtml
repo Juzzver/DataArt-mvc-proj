@@ -1,0 +1,36 @@
+﻿@model WebExamination_MVC.Models.UserRegistrationResponse
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registration</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <p>Login: @Html.TextBoxFor(x => x.Login)</p>
+        <p>Name: @Html.TextBoxFor(x => x.Name)</p>
+        <p>Surname: @Html.TextBoxFor(x => x.Surname)</p>
+        <p>Email: @Html.TextBoxFor(x => x.Email)</p>
+        <p>Password: @Html.TextBoxFor(x => x.Password)</p>
+        <p>Phone: @Html.TextBoxFor(x => x.Phone)</p>
+                <p>Вы придете?
+            @Html.DropDownListFor(x => x.WillAttend, new[] {
+                new SelectListItem() { Text = "Да, конечно я буду", Value = Boolean.TrueString},
+                new SelectListItem() { Text = "Нет, я не смогу", Value = Boolean.FalseString}
+            })
+        </p>
+        <input type="submit" value="Зарегистрироваться" />
+
+    }
+    <div>
+        
+    </div>
+</body>
+</html>
