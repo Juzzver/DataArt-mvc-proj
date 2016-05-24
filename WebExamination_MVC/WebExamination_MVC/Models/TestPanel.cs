@@ -14,6 +14,8 @@ namespace WebExamination_MVC.Models
         public TimeSpan? Duration { get; set; }          // Выделяемое время на сдачу теста
         public DateTime CreationDate { get; set; }       // Дата создания теста
         public bool IsOpen { get; set; }                 // Открыт ли тест.        
+        public DateTime DateOfOpen { get; set; }         // Задать даты когда тест доступен для решения
+        public DateTime DateOfClose { get; set; }      // Конец даты доступа к тесту.
 
     }
 

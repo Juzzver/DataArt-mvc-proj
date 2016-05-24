@@ -94,6 +94,9 @@ namespace WebExamination_MVC.Controllers
             //  Response.Write(test.IsOpen);                        // открыт ли тест
             Response.Write("<br />");
             Response.Write("Test Creation Date: " + (test.CreationDate = DateTime.Now));
+            Response.Write("<br />");
+            Response.Write("Дата проведения теста: с " + (test.DateOfOpen) + " по " + test.DateOfClose);
+            Response.Write("<br />");
 
         }
         #endregion

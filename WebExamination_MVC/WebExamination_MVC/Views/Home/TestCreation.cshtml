@@ -55,6 +55,7 @@
                 </ol>
             </p>
 
+
             <script>
                 var answer_index = 0;
                 /* // Пока не нужны
@@ -150,6 +151,17 @@
         
         #region ff
         <p>Test Duration: @Html.TextBoxFor(t => t.Duration)</p>
+        //   <p>Date of Open: @Html.TextBoxFor(t => t.DateOfOpen)</p>
+        <script src="/Scripts/calendar_ru.js" type="text/javascript"></script>
+
+        <p>
+            Date of Open/Close Test:<br>
+            с <input data-val="true" data-val-date="The field DateOfOpen must be a date." data-val-required="Требуется поле DateOfOpen." id="DateOfOpen" name="DateOfOpen" value="dd-mm-yy" onfocus="this.select();lcs(this)"
+                     onclick="event.cancelBubble=true;this.select();lcs(this)" type="text">
+            по <input data-val="true" data-val-date="The field DateOfClose must be a date." data-val-required="Требуется поле DateOfClose." id="DateOfClose" name="DateOfClose" value="dd-mm-yy" onfocus="this.select();lcs(this)"
+                      onclick="event.cancelBubble=true;this.select();lcs(this)" type="text">
+        </p>
+        
         <p>Public?: @Html.CheckBoxFor(t => t.IsOpen)  </p>
         <center><input type='submit' value='Создать тест' /></center>
         #endregion
