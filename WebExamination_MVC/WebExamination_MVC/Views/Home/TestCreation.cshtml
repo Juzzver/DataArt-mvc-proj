@@ -17,7 +17,7 @@
 
     @using (Html.BeginForm())
     {
-         <p>Test ID: @Html.TextBoxFor(t => t.ID)</p>
+        // <p>Test ID: @Html.TextBoxFor(t => t.ID)</p>
         <p>Test Name: @Html.TextBoxFor(t => t.Name)</p>
         <p>Description: @Html.TextBoxFor(t => t.Description/*, new { style = "height:150px; width:30%;" }*/)</p>
         
@@ -31,6 +31,7 @@
                 <select data-val="true" data-val-required="Требуется поле QuestionType." id="Questions_0_QuestionType" name="Questions[0].QuestionType">
                     <option>RadioButton</option>
                     <option>CheckBox</option>
+                    <option>TextArea</option>
                 </select>       
             </p>
 
@@ -106,7 +107,7 @@
                     var update_answer_counter = 0;
                     
                     var elem = document.createElement('div');
-                    elem.innerHTML = "<div id='question_block'><p>Question #" + q_count + ": <input id='Questions_" + index + "_Description' name='Questions[" + index + "].Description'> Type: <select data-val='true' data-val-required='Требуется поле QuestionType.' id='Questions_" + index + "_QuestionType' name='Questions[" + index + "].QuestionType'><option>RadioButton</option><option>CheckBox</option></select>      <p><ol class='answer_indent' id='answer_list_id_" + index + "'><li>Answer: <input id='Questions_" + index + "_Answers_" + answer_index + "_Description' name='Questions[" + index + "].Answers[" + answer_index + "].Description'><input id='Questions_" + index + "__Answers_" + answer_index + "__IsCorrect' name='Questions[" + index + "].Answers[" + answer_index + "].IsCorrect' value='true' type='checkbox'><input type='button' value='+' id='answer_button' onclick='AddAnswer(\"" + index + "\")' /><input type='button' value='-' id='answer_button' onclick='RemoveAnswer(\"" + index + "\")' /></li></ol></p>            <hr id='wrap' align='left' size='0' width='50%'>" //"<p>Question #" + q_count + ": <input id='Questions' name='Questions' value='' type='text'></p><p id='ans_field_id_" + a_count + "'>Answer 1: <input id='Answers' name='Answers' value='' type='text'> <input value='+' id='ans_but' onclick='AddAnswer(\"id_" + a_count + "\")' type='button'> </p><p>Correct Answer: <input data-val='true' data-val-number='The field CorrectAnswer must be a number.' data-val-required='Требуется поле CorrectAnswer.' id='CorrectAnswer' name='CorrectAnswer' value='' type='text'></p><input value='Добавить вопрос' onclick='addQeustionsOnClick()' id='add_new_question' type='button'><hr id='wrap' align='left' size='0' width='50%'>";
+                    elem.innerHTML = "<div id='question_block'><p>Question #" + q_count + ": <input id='Questions_" + index + "_Description' name='Questions[" + index + "].Description'> Type: <select data-val='true' data-val-required='Требуется поле QuestionType.' id='Questions_" + index + "_QuestionType' name='Questions[" + index + "].QuestionType'><option>RadioButton</option><option>CheckBox</option><option>TextArea</option></select>      <p><ol class='answer_indent' id='answer_list_id_" + index + "'><li>Answer: <input id='Questions_" + index + "_Answers_" + answer_index + "_Description' name='Questions[" + index + "].Answers[" + answer_index + "].Description'><input id='Questions_" + index + "__Answers_" + answer_index + "__IsCorrect' name='Questions[" + index + "].Answers[" + answer_index + "].IsCorrect' value='true' type='checkbox'><input type='button' value='+' id='answer_button' onclick='AddAnswer(\"" + index + "\")' /><input type='button' value='-' id='answer_button' onclick='RemoveAnswer(\"" + index + "\")' /></li></ol></p>            <hr id='wrap' align='left' size='0' width='50%'>" //"<p>Question #" + q_count + ": <input id='Questions' name='Questions' value='' type='text'></p><p id='ans_field_id_" + a_count + "'>Answer 1: <input id='Answers' name='Answers' value='' type='text'> <input value='+' id='ans_but' onclick='AddAnswer(\"id_" + a_count + "\")' type='button'> </p><p>Correct Answer: <input data-val='true' data-val-number='The field CorrectAnswer must be a number.' data-val-required='Требуется поле CorrectAnswer.' id='CorrectAnswer' name='CorrectAnswer' value='' type='text'></p><input value='Добавить вопрос' onclick='addQeustionsOnClick()' id='add_new_question' type='button'><hr id='wrap' align='left' size='0' width='50%'>";
                     create_quest.appendChild(elem);
                     console.log(elem);
                  //   alert($('#answer_list_id_' + index + ' li').index());

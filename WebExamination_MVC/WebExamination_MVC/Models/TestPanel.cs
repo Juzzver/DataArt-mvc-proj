@@ -19,8 +19,9 @@ namespace WebExamination_MVC.Models
 
     public enum QuestionType
     {
-        RadioButton = 0,
-        CheckBox = 1
+        RadioButton,
+        CheckBox,
+        TextArea
     }
 
     public class Question
@@ -28,12 +29,15 @@ namespace WebExamination_MVC.Models
         public string Description { get; set; }
         public QuestionType QuestionType { get; set; }
         public IList<Answer> Answers { get; set; }
+
+        public string ImagePath { get; set; }
     }
 
     public class Answer
     {
         public string Description { get; set; }
         public bool IsCorrect { get; set; }
+        public string ImagePath { get; set; }
         
     }
 
