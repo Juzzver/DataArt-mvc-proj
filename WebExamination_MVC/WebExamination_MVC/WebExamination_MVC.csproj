@@ -193,6 +193,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ModalTestPreview.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -306,6 +307,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Registration.cshtml" />
     <Content Include="Views\Home\TestCreation.cshtml" />
+    <Content Include="Views\Home\TestPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

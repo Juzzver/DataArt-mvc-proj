@@ -100,5 +100,11 @@ namespace WebExamination_MVC.Controllers
 
         }
         #endregion
+
+        [HttpGet]
+        public ViewResult TestPage(Test test)
+        {
+            return View();
+        }
     }
 }

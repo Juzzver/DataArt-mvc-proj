@@ -11,13 +11,13 @@
 <head>
     <meta name='viewport' content='width=device-width' />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <link href="/content/ModalTestPreview.css" rel="stylesheet" />
     <title>Test Creattion</title>
 </head>
 <body>
 
     @using (Html.BeginForm())
     {
-        // <p>Test ID: @Html.TextBoxFor(t => t.ID)</p>
         <p>Test Name: @Html.TextBoxFor(t => t.Name)</p>
         <p>Description: @Html.TextBoxFor(t => t.Description/*, new { style = "height:150px; width:30%;" }*/)</p>
         
@@ -25,15 +25,11 @@
         <div id='question_block'>
             <p>
                 Question #1: <input id="Questions_0_Description" name="Questions[0].Description"> Type: 
-                
-               <!-- Html.DropDownListFor(user => user.Questions[0].QuestionType,
-            new SelectList(Enum.GetNames(typeof(WebExaminationMVC.Models.QuestionType))))-->
                 <select data-val="true" data-val-required="Требуется поле QuestionType." id="Questions_0_QuestionType" name="Questions[0].QuestionType">
                     <option>RadioButton</option>
                     <option>CheckBox</option>
                     <option>TextArea</option>
-                </select>       
-            </p>
+                </select>    
 
             <!-- Блок ответов -->
             <style>
@@ -55,23 +51,16 @@
                 </ol>
             </p>
 
-
             <script>
                 var answer_index = 0;
-                /* // Пока не нужны
-                var add_answer_button = document.getElementById('add_answer_button'); // получаем контекст кнопки 'добавления'
-                var remove_answer_button = document.getElementById('remove_answer_button'); // получаем контекст кнопки 'удаления'
-                */
-
-
 
                 function AddAnswer(id) {
                     var answer_list = document.getElementById('answer_list_id_' + id);
                     //     var answer_field = document.getElementById('ans_field_id_' + id); // получаем контекст параграфа с уник. id поля.
-                    var create_new_answer = document.createElement('li');           // создаем новый параграф
-                    //answer_count++;                                                // подымаем счетчик для передачи в новое поле
+                    var create_new_answer = document.createElement('li');           // создаем новый элемент в списке ответов
                     answer_index++;
-                    create_new_answer.innerHTML = "Answer: <input id='Questions_" + id + "_Answers_" + answer_index + "_Description' name='Questions[" + id + "].Answers[" + answer_index + "].Description'><input id='Questions_" + id + "__Answers_" + answer_index + "__IsCorrect' name='Questions[" + id + "].Answers[" + answer_index + "].IsCorrect' value='true' type='checkbox'>";
+                    create_new_answer.innerHTML = "Answer: <input id='Questions_" + id + "_Answers_" + answer_index + "_Description' name='Questions[" + id + "].Answers[" + answer_index + "].Description'>"
+                        + "<input id='Questions_" + id + "__Answers_" + answer_index + "__IsCorrect' name='Questions[" + id + "].Answers[" + answer_index + "].IsCorrect' value='true' type='checkbox'>";
                     answer_list.appendChild(create_new_answer);
                 }
                 
@@ -91,57 +80,29 @@
 
             <script>
                 var q_count = 1;
-               // var a_count = 1;
                 var index = 0;
-             //   var new_quest = document.getElementById('add_new_question');
-
                 var create_quest = document.getElementById('question_block');
-              //  var wrap = document.getElementById('wrap');
 
                 function addQeustionOnClick() {
                     q_count++;
-                //    a_count++;
                     index++;
-
                     answer_index = 0;
-
-                    var update_answer_counter = 0;
                     
                     var elem = document.createElement('div');
-                    elem.innerHTML = "<div id='question_block'><p>Question #" + q_count + ": <input id='Questions_" + index + "_Description' name='Questions[" + index + "].Description'> Type: <select data-val='true' data-val-required='Требуется поле QuestionType.' id='Questions_" + index + "_QuestionType' name='Questions[" + index + "].QuestionType'><option>RadioButton</option><option>CheckBox</option><option>TextArea</option></select>      <p><ol class='answer_indent' id='answer_list_id_" + index + "'><li>Answer: <input id='Questions_" + index + "_Answers_" + answer_index + "_Description' name='Questions[" + index + "].Answers[" + answer_index + "].Description'><input id='Questions_" + index + "__Answers_" + answer_index + "__IsCorrect' name='Questions[" + index + "].Answers[" + answer_index + "].IsCorrect' value='true' type='checkbox'><input type='button' value='+' id='answer_button' onclick='AddAnswer(\"" + index + "\")' /><input type='button' value='-' id='answer_button' onclick='RemoveAnswer(\"" + index + "\")' /></li></ol></p>            <hr id='wrap' align='left' size='0' width='50%'>" //"<p>Question #" + q_count + ": <input id='Questions' name='Questions' value='' type='text'></p><p id='ans_field_id_" + a_count + "'>Answer 1: <input id='Answers' name='Answers' value='' type='text'> <input value='+' id='ans_but' onclick='AddAnswer(\"id_" + a_count + "\")' type='button'> </p><p>Correct Answer: <input data-val='true' data-val-number='The field CorrectAnswer must be a number.' data-val-required='Требуется поле CorrectAnswer.' id='CorrectAnswer' name='CorrectAnswer' value='' type='text'></p><input value='Добавить вопрос' onclick='addQeustionsOnClick()' id='add_new_question' type='button'><hr id='wrap' align='left' size='0' width='50%'>";
+                    elem.innerHTML = "<div id='question_block'><p>Question #" + q_count + ": <input id='Questions_" + index + "_Description' name='Questions[" + index + "].Description'>"  // Генерация поля с вопросом
+                        + "Type: <select data-val='true' data-val-required='Требуется поле QuestionType.' id='Questions_" + index + "_QuestionType' name='Questions[" + index + "].QuestionType'><option>RadioButton</option><option>CheckBox</option><option>TextArea</option></select>" // Генерация типа вопроса
+                        + "<p><ol class='answer_indent' id='answer_list_id_" + index + "'>" // генерация списка с ответами
+                        + "<li>Answer: <input id='Questions_" + index + "_Answers_" + answer_index + "_Description' name='Questions[" + index + "].Answers[" + answer_index + "].Description'>"  // генерация поля с ответом
+                        + "<input id='Questions_" + index + "__Answers_" + answer_index + "__IsCorrect' name='Questions[" + index + "].Answers[" + answer_index + "].IsCorrect' value='true' type='checkbox'>" // генерация чекбокса для маркера правильных ответов.
+                        + "<input type='button' value='+' id='answer_button' onclick='AddAnswer(\"" + index + "\")' />" // генерация кнопки с добавлением ответов
+                        + "<input type='button' value='-' id='answer_button' onclick='RemoveAnswer(\"" + index + "\")' /></li></ol></p>" // генерация кнопки с удалением ответов ответов
+                        + "<hr id='wrap' align='left' size='0' width='50%'>" 
                     create_quest.appendChild(elem);
                     console.log(elem);
-                 //   alert($('#answer_list_id_' + index + ' li').index());
-                    //  update_answer_counter++;
-
-              //      var elem = document.createElement('div');
-                //    elem.innerHTML = '<div><p><ol class=' + 'answer_indent' + $('li').in + '><li>click me ' + $('li').length + '</li>' + '<li>click me ' + $('li').length + '</li></ol></p></div>';
-
-                 /*   $(document).on('click', 'ol,ol *', function (e) {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        // результаты во внедренном коде не будут начинатся с 0
-                        // где-то на самой странице есть еще 2 li + сам тэг body
-                        // попробуйте заменить селекторы на `ul.test li` - тогда индексы будут начиная 0
-                       return  console.log($(this).index());
-                    })();*/
-
-                 /*   $(document).on('click', 'ol,ol *', getListNumber(e) );
-
-                    function getListNumber(e) {
-
-                        e.stopPropagation();
-                        e.preventDefault();
-                        // результаты во внедренном коде не будут начинатся с 0
-                        // где-то на самой странице есть еще 2 li + сам тэг body
-                        // попробуйте заменить селекторы на `ul.test li` - тогда индексы будут начиная 0
-                        return console.log($(this).index());
-                    }*/
                 }
             </script>
 
-
-
+            <!-- Горизонтальный разделитель-->
             <hr width='50%' align='left' size='0' id='wrap'>
 
         </div>
@@ -149,9 +110,8 @@
         
         
         
-        #region ff
+       <!-- Блок с настройками теста -->
         <p>Test Duration: @Html.TextBoxFor(t => t.Duration)</p>
-        //   <p>Date of Open: @Html.TextBoxFor(t => t.DateOfOpen)</p>
         <script src="/Scripts/calendar_ru.js" type="text/javascript"></script>
 
         <p>
@@ -164,7 +124,7 @@
         
         <p>Public?: @Html.CheckBoxFor(t => t.IsOpen)  </p>
         <center><input type='submit' value='Создать тест' /></center>
-        #endregion
+        <!--   -->
     }
     <div>
 

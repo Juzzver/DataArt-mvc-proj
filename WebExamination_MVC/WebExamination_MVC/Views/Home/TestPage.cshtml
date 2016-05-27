@@ -1,0 +1,128 @@
+﻿@model WebExamination_MVC.Models.Test
+
+@{
+    ViewBag.Title = "TestPage";
+}
+
+<h2>TestPage</h2>
+
+@using (Html.BeginForm())
+{
+    <div id="test_content">
+        <div id="question_block">
+            <p>Test Name: @Html.TextBoxFor(t => t.Name)</p>
+            <p>Description: @Html.TextAreaFor(t => t.Description/*, new { style = "height:150px; width:30%;" }*/)</p>
+            <p>
+                Question #1: <textarea id="questions_description" name="questions_description"></textarea> Type:
+                <select data-val="true" data-val-required="Требуется поле QuestionType." id="QuestionType" name="QuestionType">
+                    <option>RadioButton</option>
+                    <option>CheckBox</option>
+                    <option>TextArea</option>
+                </select>
+                <!-- блок с загрузкой картинки-->
+                <input type="button" style="font-size: small;" onclick="Upload()" name="file_upload_button" value="Upload Image" id="file_upload_button" />
+                <input style="visibility: hidden" type="file" name="file_upload" value="" id="file_upload" />
+            </p>
+            <div id="answers_block">
+                <!-- Блок ответов -->
+                <style>
+                    .answer_indent {
+                        padding: 0; /* Убираем поля */
+                        margin-left: 20px; /* Отступ слева */
+                    }
+                </style>
+
+                    <ol id="answer_list" class="answer_indent">
+                        <li>
+                            Answer:
+                            <textarea id="answer_description" name="answer_description"></textarea>
+                            <input id="answer_IsCorrect" name="answer_IsCorrect" value="true" type="checkbox">
+                            <input type='button' value='+' id="add_answer_button" onclick="AddAnswer('0')" />
+                            <input type='button' value='-' id="remove_answer_button" onclick="RemoveAnswer('0')" />
+                        </li>
+                    </ol>
+            </div>
+
+          
+        </div>
+
+        <!-- Создание блока с новыми вопросами и ответами-->
+        <input type="button" value="Добавить вопрос" onclick="addQeustionOnClick()" id="add_new_question" />
+
+        <script>
+            var q_count = 1;
+            // var a_count = 1;
+            var index = 0;
+            //   var new_quest = document.getElementById('add_new_question');
+
+            var test_content = document.getElementById('test_content');
+            var create_quest = document.getElementById('question_block');
+            //  var wrap = document.getElementById('wrap');
+
+            function addQeustionOnClick() {
+                q_count++;
+                //    a_count++;
+                index++;
+
+                answer_index = 0;
+
+                var update_answer_counter = 0;
+
+                var new_q_block = document.createElement('div');
+                new_q_block.innerHTML = "<div id='question_block'>"    
+                +  "Question #" + q_count + ": <textarea id='questions_description' name='questions_description'></textarea>"
+                + "Type: <select id='QuestionType' name='QuestionType'><option>RadioButton</option> <option>CheckBox</option><option>TextArea</option></select>"
+                + "<input type='button' style='font-size: small;' onclick='Upload()' name='file_upload_button' value='Upload Image' id='file_upload_button' />"
+                + "<input style='visibility: hidden' type='file' name='file_upload' value='' id='file_upload' />"
+                + "<div id='answers_block'>"
+                + "<ol id='answer_list' class='answer_indent'> <li>Answer: <textarea id='answer_description' name='answer_description'></textarea>"
+                + "<input id='answer_IsCorrect' name='answer_IsCorrect' value='true' type='checkbox'>"
+                + "<input type='button' value='+' id='add_answer_button' onclick='AddAnswer()' />"
+                + "<input type='button' value='-' id='remove_answer_button' onclick='RemoveAnswer()' />"
+                + "</li></ol></div></div>"
+
+
+                test_content.appendChild(new_q_block);
+                console.log('created new ' + new_q_block);
+            }
+        </script>
+
+
+        <!-- Горизонтальный разделитель-->
+        <hr width='50%' align='left' size='0' id='wrap'>
+
+
+    </div>
+    
+      <script>
+            var answer_index = 0;
+            /* // Пока не нужны
+            var add_answer_button = document.getElementById('add_answer_button'); // получаем контекст кнопки 'добавления'
+            var remove_answer_button = document.getElementById('remove_answer_button'); // получаем контекст кнопки 'удаления'
+            */
+
+
+
+            function AddAnswer(id) {
+                var answer_list = document.getElementById('answer_list');
+                var create_new_answer = document.createElement('li');           // создаем новый параграф
+                //answer_count++;                                                // подымаем счетчик для передачи в новое поле
+                answer_index++;
+                create_new_answer.innerHTML = "Answer: <textarea id='answer_description' name='answer_description'></textarea>"
+                                            + "<input id='answer_IsCorrect' name='answer_IsCorrect' value='true' type='checkbox'>"
+              //  create_new_answer.innerHTML = "Answer: <input id='Questions_" + id + "_Answers_" + answer_index + "_Description' name='Questions[" + id + "].Answers[" + answer_index + "].Description'><input id='Questions_" + id + "__Answers_" + answer_index + "__IsCorrect' name='Questions[" + id + "].Answers[" + answer_index + "].IsCorrect' value='true' type='checkbox'>";
+                answer_list.appendChild(create_new_answer);
+            }
+
+            function RemoveAnswer(id) {
+               answer_list = document.getElementById('answer_list');
+               if (answer_list.childElementCount > 1) {
+                   answer_list.removeChild(answer_list.lastChild); // удаляем последний добавленный ответ.
+               }
+               else
+                   alert("Nothing to do...");
+            }
+
+            </script>
+
+}
